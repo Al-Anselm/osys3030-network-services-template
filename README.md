@@ -1,10 +1,10 @@
 # OSYS3030 - Linux Network Appliance Documentation
 
-> **Student Name:** [Your Name]  
-> **Student ID / VMID:** [e.g., 106]  
-> **Repository:** [Public GitHub URL]  
-> **Instructor:** Matt Redmond  
-> **Course:** OSYS3030 - Network Services Using Linux  
+> **Student Name:** Allan
+> **Student ID / VMID:** W0520390 | 115 
+> **Repository:** https://github.com/Al-Anselm/osys3030-network-services-template 
+> **Instructor:** Matt Redmond 
+> **Course:** OSYS3030 - Network Services Using Linux
 
 ---
 
@@ -12,7 +12,7 @@
 A high-level summary of your multi-homed Linux server appliance, its purpose, and its role as a gateway/router for the private internal network.
 
 * **Operating System:** Ubuntu Server 24.04 LTS (Noble Numbat)
-* **Hostname:** `server-[YourID]` (e.g., `robserver`)
+* **Hostname:** `server-boyo`
 * **Primary Roles:**
   * Router & Firewall (UFW + iptables NAT masquerading)
   * Recursive & Authoritative DNS (BIND9)
@@ -36,25 +36,25 @@ A high-level summary of your multi-homed Linux server appliance, its purpose, an
                        |      (Your Appliance)   |
                        +------------+------------+
                                  [ens19]
-                                    | (10.<ID>.0.250/24)
+                                    | (10.115.0.250/24)
                                     |
               +---------------------+--------------------+
               |        Isolated Private VLAN (vmbr5)      |
-              |             10.<ID>.0.0/24               |
+              |             10.115.0.0/24               |
               +---------------------+--------------------+
                                     |
-                                    | (DHCP: 10.<ID>.0.10 - .200)
+                                    | (DHCP: 10.115.0.10 - .200)
                                  [eth0]
                        +------------+------------+
                        |    Alpine Client VM     |
-                       |       (VM 91<ID>)       |
+                       |       (VM 9115       |
                        +-------------------------+
 ```
 
 | Interface | Network Zone | IP Address / Subnet | Purpose |
 | :--- | :--- | :--- | :--- |
-| `ens18` | WAN / External | `10.20.1.<ID>/23` | Upstream internet & SSH management |
-| `ens19` | LAN / Internal | `10.<ID>.0.250/24` | Default gateway & service binding for clients |
+| `ens18` | WAN / External | `10.20.1.169/23` | Upstream internet & SSH management |
+| `ens19` | LAN / Internal | `10.115.0.250/24` | Default gateway & service binding for clients |
 
 ---
 
@@ -62,7 +62,7 @@ A high-level summary of your multi-homed Linux server appliance, its purpose, an
 
 | Directory | Service | Daemon | Listening Ports | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| [`hardening/`](./hardening/) | SSH / Host Security | `sshd` | TCP 22 | Hardened SSH configuration, root restrictions |
+| [`hardening/`](./hardening/) | SSH / Host Security | `sshd` | TCP 2222 | Hardened SSH configuration, root restrictions |
 | [`dns/`](./dns/) | BIND9 DNS | `named` | UDP/TCP 53 | Authoritative for `innovate.lab` & recursive forwarder |
 | [`dhcp/`](./dhcp/) | Kea DHCPv4 | `kea-dhcp4` | UDP 67 | Scoped dynamic IP lease allocation for LAN |
 | [`fw/`](./fw/) | UFW Firewall & NAT | `ufw` / `iptables` | N/A | State-tracking firewall & packet masquerading |
